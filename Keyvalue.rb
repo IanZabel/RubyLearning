@@ -5,7 +5,6 @@ class Keyvalue
   def useroutput(inputstring, hashmap)
     
     input = inputstring.chomp.split{" "}
-    done = false
     dict = hashmap
 
     if input[0].downcase == "put"
