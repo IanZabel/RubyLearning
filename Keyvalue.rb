@@ -10,7 +10,7 @@ class Keyvalue
     while @i == 1
 
       print '> '
-      $stdin = @input = input.gets.chomp.split{" "}
+      @input = input.gets.chomp.split{" "}
 
       # Determine output based on command (@input[0])
       if @input[0].downcase == "put"
@@ -51,5 +51,3 @@ class Keyvalue
   end
 
 end
-
-Keyvalue.new.start
