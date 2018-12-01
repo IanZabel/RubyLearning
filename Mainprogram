@@ -1,0 +1,2 @@
+require './Keyvalue.rb'
+Keyvalue.new.mainloop
