@@ -5,48 +5,44 @@ class Keyvalue
   def useroutput(inputstring, hashmap)
     
     input = inputstring.chomp.split{" "}
-    i = 1
+    done = false
     dict = hashmap
 
     if input[0].downcase == "put"
       dict.store(input[1], input[2])
-      output = 'ok'
+      return 'ok', false, dict
 
     elsif input[0].downcase == 'fetch'
       if dict.key?(input[1]) == true
-        output = dict[input[1]].to_s
+        return dict[input[1]].to_s, false, dict
 
       else
-        output = 'value not found'
+        return 'value not fount', false, dict
 
       end
 
     elsif input[0].downcase == 'exit'
-      output = 'Bye!'
-      i = 0
+      return 'Bye!', true, dict
 
     else
-      output = 'Unknown command. Known commands are: put, fetch, exit'
+      return 'Unknown command. Known commands are: put, fetch, exit', false, dict
 
     end
-
-    return output, i, dict
-
   end
 
   def mainloop(input = $stdin, output = $stdout)
     
-    i = 1
-    dict = {}
+    @done = false
+    @dict = {}
 
-    while i == 1
+    while not @done
       
       output.print '> '
       userinput = input.gets
-      useroutput = useroutput(userinput, dict)
+      useroutput = useroutput(userinput, @dict)
       output.puts useroutput[0]
-      i = useroutput[1]
-      dict = useroutput[2]
+      @done = useroutput[1]
+      @dict = useroutput[2]
 
     end
   end
